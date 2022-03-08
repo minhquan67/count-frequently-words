@@ -1,0 +1,38 @@
+<form [formGroup]="countFrequentlyWordsForm" (ngSubmit)="loadData()">
+    <div class="count-frequently-words">
+        <h1>Count frequently words</h1>
+        <div class="count-frequently-words_block">
+            <label>User input</label>
+            <textarea formControlName="userInput">
+                
+            </textarea>
+        </div>
+        <div class="count-frequently-words_block">
+            <label>Restful api</label>
+            <input type="text" formControlName="restApi" />
+            <span class="error" *ngIf="countFrequentlyWordsForm.controls['restApi'].errors?.['required']">
+                Restful api is required.
+            </span>
+        </div>
+        <div class="count-frequently-words_block">
+            <button type="submit"> Load Data</button>
+        </div>
+    </div>
+</form>
+<div class="content">
+    <div *ngIf="countFrequentlyWordsForm.controls['userInput']?.value" class="content_block content_user-input">
+        <label>
+            The Number of letter user input: {{countFrequentlyWordsForm.controls['userInput'].value.length}}
+        </label>
+    </div>
+    <div class="content_block content_top-ten-words" *ngIf="topTenWords.length > 0">
+        <label>
+            The top 10 most used in the data:
+        </label>
+        <ul>
+            <li *ngFor="let topWord of topTenWords; index as i;">{{topWord[0]}} : {{topWord[1]}}</li>
+        </ul>
+    </div>
+</div>
+
+<!-- <a *ngFor="let item of topTenWords; index as i;">{{item[0]}} - {{item[1]}}</a> -->
