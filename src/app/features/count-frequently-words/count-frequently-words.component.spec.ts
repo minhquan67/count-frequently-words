@@ -74,10 +74,14 @@ describe('CountFrequentlyWordsComponent', () => {
   it('should show data when user input rest api and click load data button', fakeAsync(() => {
     spyOn(countFrequentlyWordsServiceMock, 'topTenWords').and.returnValue(topTenWords);
     spyOn(httpClient,'get').and.returnValue(of(new Object()));
+    const spyLoadDataFn = spyOn(component, 'loadData').and.callThrough();
     let loadBtn = fixture.debugElement.nativeElement.querySelector('button')
     loadBtn.click();
+    fixture.detectChanges();
     tick();
-    expect(component.loadData).toHaveBeenCalled();
+    expect(spyLoadDataFn).toHaveBeenCalled();
     expect(component.topTenWords).toEqual(topTenWords);
+    const contentTopTenWord = fixture.debugElement.query(By.css('.content_top-ten-words'));
+    expect(contentTopTenWord).toBeTruthy();
   }));
 });
