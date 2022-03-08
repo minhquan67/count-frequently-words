@@ -9,8 +9,8 @@ export class CountFrequentlyWordsService {
 
   constructor() { }
 
-  topTenWords(object: any) {
-    this.topTenWords$ = this.calculateMostUsedWords(this.getLongestWord(object));
+  topTenWords(object: any): [string, number][] {
+     return this.topTenWords$ = this.calculateMostUsedWords(this.getLongestWord(object));
   }
 
   calculateMostUsedWords(words: string[]): [string, number][] {
