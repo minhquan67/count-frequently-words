@@ -25,10 +25,8 @@ export class CountFrequentlyWordsComponent implements OnInit {
   }
 
   loadData()  {
-    console.log(this.countFrequentlyWordsForm)
     this.httpClient.get(this.countFrequentlyWordsForm.value.restApi).subscribe(res => {
-      this.countFrequentlyWordsService.topTenWords(res);
-      this.topTenWords = this.countFrequentlyWordsService.topTenWords$;
+      this.topTenWords = this.countFrequentlyWordsService.topTenWords(res);
     })
   }
 }
